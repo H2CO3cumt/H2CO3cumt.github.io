@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>H2CO3的博客</title>
+    <link href="https://h2co3cumt.github.io/feed.xml" rel="self" />
+    <link href="https://h2co3cumt.github.io" />
+    <updated>2026-08-12T18:08:07+08:00</updated>
+    <author>
+        <name>H2CO3</name>
+    </author>
+    <id>https://h2co3cumt.github.io</id>
+
+    <entry>
+        <title>你好</title>
+        <author>
+            <name>H2CO3</name>
+        </author>
+        <link href="https://h2co3cumt.github.io/ni-hao.html"/>
+        <id>https://h2co3cumt.github.io/ni-hao.html</id>
+
+        <updated>2026-08-12T17:52:00+08:00</updated>
+            <summary></summary>
+        <content></content>
+    </entry>
+    <entry>
+        <title>Robei项目开发记录</title>
+        <author>
+            <name>H2CO3</name>
+        </author>
+        <link href="https://h2co3cumt.github.io/robeixiang-mu-kai-fa-ji-lu.html"/>
+        <id>https://h2co3cumt.github.io/robeixiang-mu-kai-fa-ji-lu.html</id>
+
+        <updated>2026-08-12T17:10:28+08:00</updated>
+            <summary></summary>
+        <content></content>
+    </entry>
+    <entry>
+        <title>FPGA学习记录</title>
+        <author>
+            <name>H2CO3</name>
+        </author>
+        <link href="https://h2co3cumt.github.io/fpgaxue-xi-ji-lu.html"/>
+        <id>https://h2co3cumt.github.io/fpgaxue-xi-ji-lu.html</id>
+
+        <updated>2026-08-12T17:10:15+08:00</updated>
+            <summary></summary>
+        <content></content>
+    </entry>
+    <entry>
+        <title>我的第一篇博客</title>
+        <author>
+            <name>H2CO3</name>
+        </author>
+        <link href="https://h2co3cumt.github.io/wo-de-di-yi-pian-bo-ke.html"/>
+        <id>https://h2co3cumt.github.io/wo-de-di-yi-pian-bo-ke.html</id>
+
+        <updated>2026-08-12T17:10:05+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    HELLO WORLD
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>HELLO WORLD</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>测试1</title>
+        <author>
+            <name>H2CO3</name>
+        </author>
+        <link href="https://h2co3cumt.github.io/ce-shi-1.html"/>
+        <id>https://h2co3cumt.github.io/ce-shi-1.html</id>
+
+        <updated>2026-08-12T17:09:23+08:00</updated>
+            <summary type="html">
+                <![CDATA[
+                    测试1
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                
+  <p>
+    测试1
+  </p>
+            ]]>
+        </content>
+    </entry>
+</feed>

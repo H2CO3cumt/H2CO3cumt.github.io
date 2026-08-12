@@ -1,0 +1,77 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "H2CO3的博客",
+    "description": "",
+    "home_page_url": "https://h2co3cumt.github.io",
+    "feed_url": "https://h2co3cumt.github.io/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "H2CO3"
+    },
+    "items": [
+        {
+            "id": "https://h2co3cumt.github.io/ni-hao.html",
+            "url": "https://h2co3cumt.github.io/ni-hao.html",
+            "title": "你好",
+            "author": {
+                "name": "H2CO3"
+            },
+            "tags": [
+            ],
+            "date_published": "2026-08-12T17:52:00+08:00",
+            "date_modified": "2026-08-12T18:08:07+08:00"
+        },
+        {
+            "id": "https://h2co3cumt.github.io/robeixiang-mu-kai-fa-ji-lu.html",
+            "url": "https://h2co3cumt.github.io/robeixiang-mu-kai-fa-ji-lu.html",
+            "title": "Robei项目开发记录",
+            "author": {
+                "name": "H2CO3"
+            },
+            "tags": [
+            ],
+            "date_published": "2026-08-12T17:10:28+08:00",
+            "date_modified": "2026-08-12T17:10:28+08:00"
+        },
+        {
+            "id": "https://h2co3cumt.github.io/fpgaxue-xi-ji-lu.html",
+            "url": "https://h2co3cumt.github.io/fpgaxue-xi-ji-lu.html",
+            "title": "FPGA学习记录",
+            "author": {
+                "name": "H2CO3"
+            },
+            "tags": [
+            ],
+            "date_published": "2026-08-12T17:10:15+08:00",
+            "date_modified": "2026-08-12T17:10:15+08:00"
+        },
+        {
+            "id": "https://h2co3cumt.github.io/wo-de-di-yi-pian-bo-ke.html",
+            "url": "https://h2co3cumt.github.io/wo-de-di-yi-pian-bo-ke.html",
+            "title": "我的第一篇博客",
+            "summary": "HELLO WORLD",
+            "content_html": "<p>HELLO WORLD</p>",
+            "author": {
+                "name": "H2CO3"
+            },
+            "tags": [
+            ],
+            "date_published": "2026-08-12T17:10:05+08:00",
+            "date_modified": "2026-08-12T17:10:05+08:00"
+        },
+        {
+            "id": "https://h2co3cumt.github.io/ce-shi-1.html",
+            "url": "https://h2co3cumt.github.io/ce-shi-1.html",
+            "title": "测试1",
+            "summary": "测试1",
+            "content_html": "\n  <p>\n    测试1\n  </p>",
+            "author": {
+                "name": "H2CO3"
+            },
+            "tags": [
+            ],
+            "date_published": "2026-08-12T17:09:23+08:00",
+            "date_modified": "2026-08-12T17:09:23+08:00"
+        }
+    ]
+}
