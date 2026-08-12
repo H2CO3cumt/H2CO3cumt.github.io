@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08243b"/><stop offset="1" stop-color="#0b7790"/></linearGradient></defs>
+  <rect width="240" height="240" rx="52" fill="url(#g)"/>
+  <g fill="none" stroke="#8adce6" stroke-width="8" stroke-linecap="round">
+    <rect x="66" y="66" width="108" height="108" rx="18"/>
+    <path d="M92 105h56M92 135h33M76 44v22m44-22v22m44-22v22M76 174v22m44-22v22m44-22v22M44 76h22m-22 44h22m-22 44h22m108-88h22m-22 44h22m-22 44h22"/>
+  </g>
+  <text x="120" y="225" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="16" letter-spacing="3">H2CO3CUMT</text>
+</svg>

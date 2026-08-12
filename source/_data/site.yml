@@ -1,0 +1,68 @@
+# 主页与项目页的集中数据。修改后重新构建即可。
+hero:
+  eyebrow: FPGA / DIGITAL IC / ENGINEERING NOTES
+  tagline: 中国矿业大学24级集成电路设计与集成系统本科在读
+
+home:
+  intro_title: 面向数字设计的长期笔记
+  intro_text: 从 RTL 代码、仿真验证到项目复盘，把可复用的思路整理成清晰的技术文章。
+
+categories:
+  - name: FPGA
+    path: /categories/FPGA/
+    icon: chip
+    description: 器件、工具链与开发实践
+  - name: Verilog
+    path: /categories/Verilog/
+    icon: code
+    description: RTL 设计、仿真与验证
+  - name: 数字电路
+    path: /categories/数字电路/
+    icon: circuit
+    description: 时序、组合逻辑与基础理论
+  - name: Robei EDA
+    path: /categories/Robei-EDA/
+    icon: waveform
+    description: 建模、仿真与 EDA 学习
+  - name: Python
+    path: /categories/Python/
+    icon: terminal
+    description: 工具脚本与工程自动化
+  - name: 项目记录
+    path: /categories/项目记录/
+    icon: project
+    description: 方案、实现、验证与复盘
+  - name: 学习日常
+    path: /categories/学习日常/
+    icon: notebook
+    description: 阶段总结与学习过程
+
+projects:
+  - name: FPGA 项目示例
+    status: 示例 / 待填写
+    description: 在这里填写项目目标、主要功能、你的工作和验证结果。
+    stack:
+      - FPGA
+      - Verilog
+    image:
+    github:
+    detail:
+  - name: Robei EDA 项目示例
+    status: 示例 / 待填写
+    description: 在这里填写模型结构、仿真方案、关键波形和最终结论。
+    stack:
+      - Robei EDA
+      - Digital IC
+    image:
+    github:
+    detail:
+  - name: Python 工具示例
+    status: 示例 / 待填写
+    description: 在这里填写脚本用途、输入输出、依赖和使用方法。
+    stack:
+      - Python
+      - Automation
+    image:
+    github:
+    detail:
+
