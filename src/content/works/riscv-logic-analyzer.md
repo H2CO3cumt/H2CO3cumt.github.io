@@ -1,7 +1,8 @@
 ---
 title: RISC-V 多协议逻辑分析仪
 year: 2026
-event: FPGA 创新设计大赛
+event: 全国大学生 FPGA 创新设计大赛
+result: 参赛作品
 summary: 一片紫光同创 PGL50H 上同时跑自研 RV32I 五级流水处理器和八通道逻辑分析仪——被测对象和观测工具是同一颗芯片。
 license: 待定
 specs:
