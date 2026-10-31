@@ -99,6 +99,7 @@ specs:
 │  │  ├─ works/              # 列表与详情
 │  │  ├─ notes/              # 列表与详情
 │  │  ├─ archive.astro       # 全部随笔按年归档
+│  │  ├─ tags.astro          # 按标签归类（锚点跳转，无独立路由）
 │  │  ├─ about.astro
 │  │  ├─ rss.xml.ts
 │  │  └─ 404.astro

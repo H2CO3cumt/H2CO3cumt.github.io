@@ -21,6 +21,7 @@ const PAGES = [
   { name: 'notes', path: '/notes/' },
   { name: 'note', path: '/notes/verilog-fsm/' },
   { name: 'archive', path: '/archive/' },
+  { name: 'tags', path: '/tags/' },
   { name: 'works', path: '/works/' },
   { name: 'about', path: '/about/' },
   { name: '404', path: '/404.html' },

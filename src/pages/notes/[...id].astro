@@ -28,6 +28,15 @@ const stamp = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDa
       <Content />
     </div>
 
-    {tags.length > 0 && <p class="tags">{tags.join('、')}</p>}
+    {
+      tags.length > 0 && (
+        <p class="tags">
+          {tags.map((tag, i) => [
+            i > 0 && '、',
+            <a href={`/tags/#${encodeURIComponent(tag)}`}>{tag}</a>,
+          ])}
+        </p>
+      )
+    }
   </article>
 </Base>
