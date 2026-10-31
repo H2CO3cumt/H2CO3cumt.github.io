@@ -1,0 +1,79 @@
+---
+import '@fontsource-variable/noto-serif-sc';
+import '@fontsource-variable/source-serif-4';
+import '@fontsource/ibm-plex-mono/400.css';
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  section?: 'works' | 'notes' | 'about';
+}
+
+const SITE = 'H2CO3cumt';
+const TAGLINE = 'FPGA、Verilog、数字电路，以及别的什么';
+const DEFAULT_DESCRIPTION =
+  '一个做数字电路的人的记录本：比赛作品、开源代码，和一些日子。';
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  section,
+} = Astro.props;
+
+const fullTitle = title ? `${title} · ${SITE}` : `${SITE}，${TAGLINE}`;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+const year = new Date().getFullYear();
+
+const nav = [
+  { href: '/works/', label: '作品', key: 'works' },
+  { href: '/notes/', label: '随笔', key: 'notes' },
+  { href: '/about/', label: '关于', key: 'about' },
+] as const;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE} href="/rss.xml" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={title ? 'article' : 'website'} />
+    <meta name="theme-color" content="#faf8f3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#16150f" media="(prefers-color-scheme: dark)" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <div class="page">
+      <header class="masthead">
+        <a class="who" href="/">{SITE}</a>
+        <nav aria-label="主导航">
+          {
+            nav.map((item) => (
+              <a href={item.href} aria-current={section === item.key ? 'page' : undefined}>
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </header>
+
+      <main id="main">
+        <slot />
+      </main>
+
+      <footer>
+        <p>© {year} {SITE}。文字与作品的版权保留，站点代码以 MIT 许可开源。</p>
+        <p><a href="https://github.com/H2CO3cumt">GitHub</a>，<a href="/rss.xml">RSS</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

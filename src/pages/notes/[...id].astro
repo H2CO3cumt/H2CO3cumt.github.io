@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => !data.draft);
+  return notes.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+type Props = { entry: CollectionEntry<'notes'> };
+
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
+const { title, date, summary } = entry.data;
+
+const stamp = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDate()} 日`;
+---
+
+<Base title={title} description={summary ?? title} section="notes">
+  <article>
+    <header class="entry-head">
+      <h1>{title}</h1>
+      <p class="byline">{stamp}</p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

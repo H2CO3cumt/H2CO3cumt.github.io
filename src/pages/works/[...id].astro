@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SpecTable from '../../components/SpecTable.astro';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works', ({ data }) => !data.draft);
+  return works.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+type Props = { entry: CollectionEntry<'works'> };
+
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
+const { title, year, event, result, summary, specs } = entry.data;
+const byline = [String(year), event, result].filter(Boolean).join('，');
+---
+
+<Base title={title} description={summary ?? `${title}，${year} 年的作品档案。`} section="works">
+  <article>
+    <header class="entry-head">
+      <h1>{title}</h1>
+      <p class="byline">{byline}</p>
+    </header>
+
+    <SpecTable items={specs} />
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

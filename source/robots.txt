@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://H2CO3cumt.github.io/sitemap.xml
-

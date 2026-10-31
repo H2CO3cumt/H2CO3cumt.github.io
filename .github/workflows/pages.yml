@@ -1,4 +1,4 @@
-name: Build and deploy Hexo to GitHub Pages
+name: Build and deploy Astro to GitHub Pages
 
 on:
   push:
@@ -41,13 +41,13 @@ jobs:
       - name: Build site
         run: pnpm run build
 
-      - name: Check generated site
+      - name: Check content and types
         run: pnpm run check
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: public
+          path: dist
 
   deploy:
     environment:

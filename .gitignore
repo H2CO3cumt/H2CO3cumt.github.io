@@ -1,12 +1,8 @@
 node_modules/
-public/
-.deploy_git/
-.cache/
-db.json
+dist/
+.astro/
 *.log
 .DS_Store
 Thumbs.db
-home-desktop.png
-home-mobile.png
-post-desktop.png
-post-mobile.png
+.env
+.env.production

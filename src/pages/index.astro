@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const works = (await getCollection('works', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title, 'zh'),
+);
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 8);
+
+const stamp = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+
+const workMeta = (d: (typeof works)[number]['data']) =>
+  [d.event, d.result].filter(Boolean).join('，') || d.summary || '';
+---
+
+<Base>
+  <section class="standfirst">
+    <h1>一个做数字电路的人的记录本</h1>
+    <p>我写 Verilog，在 FPGA 上做东西，也翻数字 IC 和 EDA 工具的文档。</p>
+    <p>这里放两样：做过的作品，和想明白的事。作品是比赛和工程的档案，随笔是日子。写得慢，但都留着。</p>
+  </section>
+
+  <section class="section">
+    <h2><a href="/works/">作品</a></h2>
+    {
+      works.length > 0 ? (
+        <ul class="entries">
+          {works.map((work) => (
+            <li>
+              <span class="when">{work.data.year}</span>
+              <p class="what">
+                <a href={`/works/${work.id}/`}>{work.data.title}</a>
+              </p>
+              {workMeta(work.data) && <p class="aside">{workMeta(work.data)}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="quiet">还没有发布的作品记录。第一份作品档案在整理中。</p>
+      )
+    }
+  </section>
+
+  <section class="section">
+    <h2><a href="/notes/">随笔</a></h2>
+    {
+      notes.length > 0 ? (
+        <ul class="entries">
+          {notes.map((note) => (
+            <li>
+              <span class="when">{stamp(note.data.date)}</span>
+              <p class="what">
+                <a href={`/notes/${note.id}/`}>{note.data.title}</a>
+              </p>
+              {note.data.summary && <p class="aside">{note.data.summary}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="quiet">还没有写过东西。</p>
+      )
+    }
+  </section>
+</Base>

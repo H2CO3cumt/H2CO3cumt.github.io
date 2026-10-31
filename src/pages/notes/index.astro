@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const stamp = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<Base title="随笔" description="技术笔记、生活与心得。" section="notes">
+  <section class="entry-head">
+    <h1>随笔</h1>
+    <p class="byline">技术笔记、看过的文档、失败的过程，以及一些日子。</p>
+  </section>
+
+  {
+    notes.length > 0 ? (
+      <ul class="entries">
+        {notes.map((note) => (
+          <li>
+            <span class="when">{stamp(note.data.date)}</span>
+            <p class="what">
+              <a href={`/notes/${note.id}/`}>{note.data.title}</a>
+            </p>
+            {note.data.summary && <p class="aside">{note.data.summary}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="quiet">还没有写过东西。</p>
+    )
+  }
+</Base>

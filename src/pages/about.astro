@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="关于" description="关于这个记录本、开源许可与联系方式。" section="about">
+  <article>
+    <header class="entry-head">
+      <h1>关于</h1>
+      <p class="byline">一个记录本，以及它是怎么来的。</p>
+    </header>
+
+    <div class="prose">
+      <p>我在做数字电路：写 Verilog，在 FPGA 上跑得起来的那种；也在读数字 IC 和 EDA 工具的文档。</p>
+      <p>这个站放两件事。一件是比赛和工程的档案，做成条目，进得去、查得到；另一件是日子，想到什么写什么，不保证结论正确，但保证是真写过的。</p>
+      <p>我没有把每篇文章都写成教程。有些只是记录当时怎么想的，后来发现错了也不改——日记本该是这个样子。</p>
+
+      <h2>开源</h2>
+      <p>
+        站点的代码以 MIT 许可开源在
+        <a href="https://github.com/H2CO3cumt/H2CO3cumt.github.io">GitHub</a>。文章和作品里的文字、图片、波形图由我保留版权，转载前请先问我。作品源码的地址写在每个作品页的参数表里。
+      </p>
+
+      <h2>联系</h2>
+      <p>GitHub 上能找到我：<a href="https://github.com/H2CO3cumt">github.com/H2CO3cumt</a>。</p>
+
+      <h2>这个站</h2>
+      <p>
+        静态生成，没有统计脚本，没有 cookie，没有评论框。正文用思源宋体，自托管，不经过第三方 CDN。设计上的取舍写在仓库的 <code>DESIGN.md</code> 里，包括哪些常见的做法被明确排除了。
+      </p>
+    </div>
+  </article>
+</Base>

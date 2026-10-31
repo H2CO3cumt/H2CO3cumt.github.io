@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const works = (await getCollection('works', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title, 'zh'),
+);
+
+const workMeta = (d: (typeof works)[number]['data']) =>
+  [d.event, d.result].filter(Boolean).join('，') || d.summary || '';
+---
+
+<Base title="作品" description="比赛作品与工程项目的档案。" section="works">
+  <section class="entry-head">
+    <h1>作品</h1>
+    <p class="byline">比赛与工程的档案。每条右侧是年份，进入后先看到一张参数表。</p>
+  </section>
+
+  {
+    works.length > 0 ? (
+      <ul class="entries">
+        {works.map((work) => (
+          <li>
+            <span class="when">{work.data.year}</span>
+            <p class="what">
+              <a href={`/works/${work.id}/`}>{work.data.title}</a>
+            </p>
+            {workMeta(work.data) && <p class="aside">{workMeta(work.data)}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="quiet">还没有发布的作品记录。第一份作品档案在整理中。</p>
+    )
+  }
+</Base>

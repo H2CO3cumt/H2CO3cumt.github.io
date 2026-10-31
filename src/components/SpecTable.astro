@@ -1,0 +1,30 @@
+---
+interface SpecItem {
+  label: string;
+  value: string;
+  href?: string;
+}
+
+interface Props {
+  items: SpecItem[];
+  caption?: string;
+}
+
+const { items, caption } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <table class="spec">
+      {caption && <caption>{caption}</caption>}
+      <tbody>
+        {items.map((item) => (
+          <tr>
+            <th scope="row">{item.label}</th>
+            <td>{item.href ? <a href={item.href}>{item.value}</a> : item.value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}

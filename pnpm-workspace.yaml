@@ -1,3 +1,0 @@
-# hexo-util 发布包已包含构建结果，不执行依赖安装脚本。
-allowBuilds:
-  hexo-util: false
