@@ -14,7 +14,7 @@
 
 ## 本地开发
 
-Node.js 20.19 以上，pnpm 11。
+Node.js 22.23.4 以上（Astro 7 的要求），pnpm 11。
 
 ```bash
 pnpm install
