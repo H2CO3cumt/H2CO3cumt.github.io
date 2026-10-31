@@ -12,7 +12,7 @@ type Props = { entry: CollectionEntry<'notes'> };
 
 const { entry } = Astro.props as Props;
 const { Content } = await render(entry);
-const { title, date, summary } = entry.data;
+const { title, date, summary, tags } = entry.data;
 
 const stamp = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDate()} 日`;
 ---
@@ -27,5 +27,7 @@ const stamp = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDa
     <div class="prose">
       <Content />
     </div>
+
+    {tags.length > 0 && <p class="tags">{tags.join('、')}</p>}
   </article>
 </Base>

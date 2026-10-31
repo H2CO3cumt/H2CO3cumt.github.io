@@ -13,7 +13,7 @@ const workMeta = (d: (typeof works)[number]['data']) =>
 <Base title="作品" description="比赛作品与工程项目的档案。" section="works">
   <section class="entry-head">
     <h1>作品</h1>
-    <p class="byline">比赛与工程的档案。每条右侧是年份，进入后先看到一张参数表。</p>
+    <p class="byline">比赛和工程的档案。点进去先看到一张参数表：用了什么片子、跑到多少频率、拿过什么。</p>
   </section>
 
   {
@@ -30,7 +30,12 @@ const workMeta = (d: (typeof works)[number]['data']) =>
         ))}
       </ul>
     ) : (
-      <p class="quiet">还没有发布的作品记录。第一份作品档案在整理中。</p>
+      <>
+        <p class="quiet">还没有发布的作品记录。</p>
+        <p class="quiet">
+          一条档案里会有赛事与年份、获奖或当前状态、主控与系统时钟、资源占用、源码地址，以及当时的复盘。
+        </p>
+      </>
     )
   }
 </Base>

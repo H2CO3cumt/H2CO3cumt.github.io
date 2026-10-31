@@ -88,11 +88,22 @@ specs:
 │  │  ├─ index.astro         # 首页：自述 + 作品索引 + 随笔索引
 │  │  ├─ works/              # 列表与详情
 │  │  ├─ notes/              # 列表与详情
+│  │  ├─ archive.astro       # 全部随笔按年归档
 │  │  ├─ about.astro
-│  │  ├─ rss.xml.js
+│  │  ├─ rss.xml.ts
 │  │  └─ 404.astro
 │  └─ styles/global.css      # 所有样式；token 在文件顶部
+├─ scripts/shots.mjs         # 截图自查：溢出/控制台报错/h1 数量
 └─ .github/workflows/pages.yml
+```
+
+## 视觉自查
+
+改了样式之后跑一次，用本机已装的 Edge 或 Chrome 截图，顺手检测横向溢出、控制台报错和每页 `h1` 数量：
+
+```bash
+pnpm build && pnpm preview     # 另开一个终端
+pnpm shots                     # 产物在 .shots/
 ```
 
 ## 部署

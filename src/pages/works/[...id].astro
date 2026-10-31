@@ -13,8 +13,9 @@ type Props = { entry: CollectionEntry<'works'> };
 
 const { entry } = Astro.props as Props;
 const { Content } = await render(entry);
-const { title, year, event, result, summary, specs } = entry.data;
-const byline = [String(year), event, result].filter(Boolean).join('，');
+const { title, year, result, summary, specs } = entry.data;
+// 赛事名放在参数表里，标题下只留年份和结果，避免同一句话出现两遍
+const byline = [String(year), result].filter(Boolean).join('，');
 ---
 
 <Base title={title} description={summary ?? `${title}，${year} 年的作品档案。`} section="works">
