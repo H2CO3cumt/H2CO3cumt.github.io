@@ -13,9 +13,22 @@ type Props = { entry: CollectionEntry<'works'> };
 
 const { entry } = Astro.props as Props;
 const { Content } = await render(entry);
-const { title, year, result, summary, specs } = entry.data;
+const { title, year, result, summary, specs, repo, license } = entry.data;
+
 // 赛事名放在参数表里，标题下只留年份和结果，避免同一句话出现两遍
 const byline = [String(year), result].filter(Boolean).join('，');
+
+/** github.com/owner/repo 比整条 https 地址好读 */
+const shortUrl = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+// repo / license 是独立字段，自动补进参数表；作者自己写了同名行就不重复
+const rows = [...specs];
+if (repo && !rows.some((s) => s.label === '源码')) {
+  rows.push({ label: '源码', value: shortUrl(repo), href: repo });
+}
+if (license && !rows.some((s) => s.label === '许可')) {
+  rows.push({ label: '许可', value: license });
+}
 ---
 
 <Base title={title} description={summary ?? `${title}，${year} 年的作品档案。`} section="works">
@@ -25,7 +38,7 @@ const byline = [String(year), result].filter(Boolean).join('，');
       <p class="byline">{byline}</p>
     </header>
 
-    <SpecTable items={specs} />
+    <SpecTable items={rows} />
 
     <div class="prose">
       <Content />

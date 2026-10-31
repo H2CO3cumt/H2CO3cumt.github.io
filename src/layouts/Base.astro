@@ -27,7 +27,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
 const year = new Date().getFullYear();
 
 const nav = [
-  { href: '/works/', label: '作品', key: 'works' },
+  { href: '/works/', label: '开源作品', key: 'works' },
   { href: '/notes/', label: '随笔', key: 'notes' },
   { href: '/about/', label: '关于', key: 'about' },
 ] as const;

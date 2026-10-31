@@ -8,34 +8,45 @@ const works = (await getCollection('works', ({ data }) => !data.draft)).sort(
 
 const workMeta = (d: (typeof works)[number]['data']) =>
   [d.event, d.result].filter(Boolean).join('，') || d.summary || '';
+
+const openCount = works.filter((w) => w.data.repo).length;
 ---
 
-<Base title="作品" description="比赛作品与工程项目的档案。" section="works">
+<Base title="开源作品" description="比赛作品与工程项目的档案，能开源的都给仓库地址。" section="works">
   <section class="entry-head">
-    <h1>作品</h1>
-    <p class="byline">比赛和工程的档案。点进去先看到一张参数表：用了什么片子、跑到多少频率、拿过什么。</p>
+    <h1>开源作品</h1>
+    <p class="byline">
+      比赛和工程的档案，陆续把源码放出来。点进去先看到一张参数表：用了什么片子、跑到多少频率、拿过什么、源码在哪。
+    </p>
   </section>
 
   {
     works.length > 0 ? (
-      <ul class="entries">
-        {works.map((work) => (
-          <li>
-            <span class="when">{work.data.year}</span>
-            <p class="what">
-              <a href={`/works/${work.id}/`}>{work.data.title}</a>
-            </p>
-            {workMeta(work.data) && <p class="aside">{workMeta(work.data)}</p>}
-          </li>
-        ))}
-      </ul>
+      <>
+        <ul class="entries">
+          {works.map((work) => (
+            <li>
+              <span class="when">{work.data.year}</span>
+              <p class="what">
+                <a href={`/works/${work.id}/`}>{work.data.title}</a>
+              </p>
+              {workMeta(work.data) && <p class="aside">{workMeta(work.data)}</p>}
+            </li>
+          ))}
+        </ul>
+        <p class="quiet">
+          共 {works.length} 条，其中 {openCount} 条已给出仓库地址。
+        </p>
+      </>
     ) : (
       <>
         <p class="quiet">还没有发布的作品记录。</p>
         <p class="quiet">
-          一条档案里会有赛事与年份、获奖或当前状态、主控与系统时钟、资源占用、源码地址，以及当时的复盘。
+          一条档案里会有赛事与年份、获奖或当前状态、主控与系统时钟、资源占用、开源仓库与许可，以及当时的复盘。
         </p>
       </>
     )
   }
+
+  <p class="cross-zone">另一边是<a href="/notes/">随笔</a>：技术笔记、看过的文档，以及一些日子。</p>
 </Base>

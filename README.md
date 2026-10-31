@@ -2,12 +2,17 @@
 
 <https://H2CO3cumt.github.io> 的源码。
 
-这个站是一个记录本：一边收比赛和工程的档案，一边记日子和技术笔记。视觉上的取舍写在 [`DESIGN.md`](./DESIGN.md) 里，写文章之前建议先读一遍——排版规则、文案语气、哪些做法被明确排除，都在里面。
+这个站分成两个区，主页和顶部导航都把这两块分开：
+
+- **开源作品** `/works/` — 比赛与工程的档案，能开源的陆续放出来，仓库地址和许可写在条目里
+- **随笔** `/notes/` — 技术笔记、看过的文档、失败的过程，以及一些日子；另有按年 `/archive/` 和按标签 `/tags/` 两种翻法
+
+视觉上的取舍写在 [`DESIGN.md`](./DESIGN.md) 里，写文章之前建议先读一遍——排版规则、文案语气、哪些做法被明确排除，都在里面。
 
 ## 技术栈
 
 - [Astro](https://astro.build) 静态生成，零运行时框架
-- 内容集合（content collections）管两种内容：`works`（作品）和 `notes`（随笔）
+- 内容集合（content collections）管两种内容：`works`（开源作品）和 `notes`（随笔）
 - 思源宋体 / Source Serif 4 / IBM Plex Mono，自托管，不经过第三方 CDN
 - KaTeX 渲染公式，Shiki 做代码高亮（亮暗双主题）
 - GitHub Actions 构建并部署到 GitHub Pages
@@ -42,7 +47,7 @@ tags:
 正文。
 ```
 
-### 作品
+### 开源作品
 
 新建 `src/content/works/项目名.md`。作品页顶部那张参数表由 `specs` 生成，其余正文走 Markdown：
 
@@ -53,6 +58,8 @@ year: 2026
 event: 全国大学生集成电路创新创业大赛
 result: 一等奖
 summary: 一句话说明。
+repo: https://github.com/H2CO3cumt/xxx     # 给了就自动补一行「源码」
+license: MIT                              # 给了就自动补一行「许可」
 specs:
   - label: 主控
     value: Xilinx Artix-7 XC7A35T

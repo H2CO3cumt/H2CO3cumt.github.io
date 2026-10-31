@@ -3,7 +3,7 @@ import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 /**
- * 作品：比赛与技术实践的档案。
+ * 开源作品：比赛与技术实践的档案，能开源的给仓库地址。
  * 参数表（specs）是作品页的视觉主体，见 DESIGN.md 第 5 节。
  */
 const works = defineCollection({
@@ -18,6 +18,10 @@ const works = defineCollection({
     result: z.string().optional(),
     /** 一句话说明，出现在列表第二行 */
     summary: z.string().optional(),
+    /** 开源仓库地址；给了就会在参数表里自动补一行「源码」 */
+    repo: z.url().optional(),
+    /** 开源许可，例如 MIT、CERN-OHL-P-2.0、未定 */
+    license: z.string().optional(),
     /** 参数表内容，按顺序渲染 */
     specs: z
       .array(z.object({ label: z.string(), value: z.string(), href: z.url().optional() }))

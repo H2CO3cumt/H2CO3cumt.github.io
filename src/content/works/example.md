@@ -6,6 +6,10 @@ year: 2026
 event: 赛事或项目名称
 result: 一等奖
 summary: 一句话说明这个作品做了什么。
+# 开源仓库和许可单独成字段：给了 repo 就会在参数表里自动补一行「源码」，
+# 给了 license 就自动补一行「许可」。上面 specs 里不用再写这两行。
+repo: https://github.com/H2CO3cumt/xxx
+license: MIT
 specs:
   - label: 赛事
     value: 全国大学生集成电路创新创业大赛
@@ -15,9 +19,6 @@ specs:
     value: 100 MHz
   - label: 资源占用
     value: LUT 3214 / FF 2908 / BRAM 12
-  - label: 源码
-    value: github.com/H2CO3cumt/xxx
-    href: https://github.com/H2CO3cumt
 draft: true
 ---
 
@@ -40,4 +41,4 @@ draft: true
 
 ## 结果
 
-最终跑在多少频率、比赛成绩、开源地址。没做完的部分也写出来。
+最终跑在多少频率、比赛成绩、仓库里放了什么。没做完的部分也写出来。

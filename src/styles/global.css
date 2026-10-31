@@ -294,6 +294,19 @@ footer p {
   font-variant-numeric: normal;
 }
 
+/* 列表下方紧跟的说明行，别贴着最后一条 */
+.entries + .quiet {
+  margin-top: 0.9rem;
+}
+
+/* 通往另一个区的那一行 */
+.cross-zone {
+  margin: 1.1rem 0 0;
+  font-size: var(--size-meta);
+  color: var(--ink-soft);
+  font-variant-numeric: normal;
+}
+
 .quiet-link {
   font-size: var(--size-meta);
   color: var(--ink-soft);
