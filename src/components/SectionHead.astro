@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  /** 右侧的计数，例如 "3 篇"、"0 条" */
+  count?: string;
+  href?: string;
+  id?: string;
+}
+
+const { title, count, href, id } = Astro.props;
+---
+
+<h2 class="section-head" id={id}>
+  {href ? <a href={href}>{title}</a> : <span>{title}</span>}
+  <span class="leader" aria-hidden="true"></span>
+  {count && <span class="count">{count}</span>}
+</h2>
