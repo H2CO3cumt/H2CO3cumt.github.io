@@ -1,6 +1,6 @@
----
+﻿---
 title: Verilog 状态机学习笔记
-date: 2026-08-12
+date: 2026-08-12T10:00:00
 summary: 用三个状态把 FSM 的写法过一遍，附带检查清单。
 tags:
   - Verilog

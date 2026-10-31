@@ -4,13 +4,32 @@ import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
 export async function getStaticPaths() {
-  const notes = await getCollection('notes', ({ data }) => !data.draft);
-  return notes.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.date.valueOf() - b.data.date.valueOf(),
+  );
+
+  return notes.map((entry, i) => {
+    const brief = (n: (typeof notes)[number]) => ({
+      id: n.id,
+      title: n.data.title,
+      // 用本地年月日，别从 ISO 串截取——东八区的凌晨会被截成前一天
+      date: `${n.data.date.getFullYear()}.${String(n.data.date.getMonth() + 1).padStart(2, '0')}.${String(n.data.date.getDate()).padStart(2, '0')}`,
+    });
+    return {
+      params: { id: entry.id },
+      props: {
+        entry,
+        prev: notes[i - 1] ? brief(notes[i - 1]) : null,
+        next: notes[i + 1] ? brief(notes[i + 1]) : null,
+      },
+    };
+  });
 }
 
-type Props = { entry: CollectionEntry<'notes'> };
+type Brief = { id: string; title: string; date: string } | null;
+type Props = { entry: CollectionEntry<'notes'>; prev: Brief; next: Brief };
 
-const { entry } = Astro.props as Props;
+const { entry, prev, next } = Astro.props as Props;
 const { Content } = await render(entry);
 const { title, date, summary, tags } = entry.data;
 
@@ -29,13 +48,31 @@ const stamp = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDa
     </div>
 
     {
-      tags.length > 0 && (
-        <p class="tags">
-          {tags.map((tag, i) => [
-            i > 0 && '、',
-            <a href={`/tags/#${encodeURIComponent(tag)}`}>{tag}</a>,
-          ])}
-        </p>
+      (tags.length > 0 || prev || next) && (
+        <footer class="entry-foot">
+          {tags.length > 0 && (
+            <p class="tags">
+              {tags.map((tag, i) => [
+                i > 0 && '、',
+                <a href={`/tags/#${encodeURIComponent(tag)}`}>{tag}</a>,
+              ])}
+            </p>
+          )}
+          {prev && (
+            <p>
+              <a href={`/notes/${prev.id}/`}>
+                上一篇　{prev.date}　{prev.title}
+              </a>
+            </p>
+          )}
+          {next && (
+            <p>
+              <a href={`/notes/${next.id}/`}>
+                下一篇　{next.date}　{next.title}
+              </a>
+            </p>
+          )}
+        </footer>
       )
     }
   </article>

@@ -33,7 +33,9 @@ const PAGES = [
 
 const VIEWPORTS = [
   { name: 'desktop', width: 1280, height: 900 },
+  { name: 'tablet', width: 768, height: 1024 },
   { name: 'mobile', width: 390, height: 844 },
+  { name: 'narrow', width: 360, height: 780 },
 ];
 
 const SCHEMES = ['light', 'dark'];
@@ -80,8 +82,8 @@ for (const scheme of SCHEMES) {
       viewport: { width: vp.width, height: vp.height },
       colorScheme: scheme,
       deviceScaleFactor: 1,
-      isMobile: vp.name === 'mobile',
-      hasTouch: vp.name === 'mobile',
+      isMobile: vp.width < 600,
+      hasTouch: vp.width < 600,
     });
     const page = await context.newPage();
 

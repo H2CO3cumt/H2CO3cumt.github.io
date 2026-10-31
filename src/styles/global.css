@@ -486,14 +486,27 @@ footer p {
 }
 
 /* 文末标签：不加上面的"标签"二字，只把词排成一行 */
-.tags {
+/* 文末：标签与前后篇共用一条细线，只画一次 */
+.entry-foot {
   max-width: var(--measure);
-  margin: 2.5rem 0 0;
+  margin: 2.75rem 0 0;
   padding-top: 1.1rem;
   border-top: 1px solid var(--rule);
   font-size: var(--size-meta);
   color: var(--ink-soft);
   font-variant-numeric: normal;
+}
+
+.entry-foot p {
+  margin: 0 0 0.55em;
+}
+
+.entry-foot p:last-child {
+  margin-bottom: 0;
+}
+
+.tags {
+  margin: 0 0 0.55em;
 }
 
 /* 标签是可点的，但不要在这一行制造第二个强调色 */
@@ -502,6 +515,11 @@ footer p {
   text-decoration-color: var(--accent-line);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
+}
+
+.entry-foot p > a {
+  color: var(--ink);
+  text-decoration-color: var(--accent-line);
 }
 
 /* ── 参数表：全站唯一"用力"的地方（只出现在作品页）─────── */
