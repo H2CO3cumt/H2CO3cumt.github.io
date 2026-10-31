@@ -10,28 +10,13 @@ const works = (await getCollection('works', ({ data }) => !data.draft)).sort(
 const allNotes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-const notes = allNotes.slice(0, 5);
+const notes = allNotes.slice(0, 6);
 
 const stamp = (d: Date) =>
   `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 
-/** 取正文第一段当摘录：去掉代码块、图注、标题、链接语法后截断。 */
-function excerpt(body: string | undefined, fallback: string | undefined, limit = 64): string {
-  if (!body) return fallback ?? '';
-  const plain = body
-    .replace(/```[\s\S]*?```/g, '')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/^#{1,6}\s+.*$/gm, '')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-    .replace(/[*_`>|]/g, '')
-    .split(/\n\s*\n/)
-    .map((p) => p.replace(/\s+/g, ' ').trim())
-    .filter((p) => p.length > 8);
-
-  const first = plain[0] ?? fallback ?? '';
-  return first.length > limit ? `${first.slice(0, limit)}…` : first;
-}
+const workMeta = (d: (typeof works)[number]['data']) =>
+  [d.event, d.result].filter(Boolean).join('，') || d.summary || '';
 ---
 
 <Base>
@@ -41,63 +26,56 @@ function excerpt(body: string | undefined, fallback: string | undefined, limit =
     <p>作品是比赛和工程的档案，随笔是日子。写得慢，但都留着。</p>
   </section>
 
-  <div class="index-cols">
-    <section class="section">
-      <SectionHead title="作品" href="/works/" count={`${works.length} 条`} />
-      {
-        works.length > 0 ? (
-          <ul class="entries">
-            {works.map((work) => (
-              <li>
-                <span class="when">{work.data.year}</span>
-                <p class="what">
-                  <a href={`/works/${work.id}/`}>{work.data.title}</a>
-                </p>
-                <p class="excerpt">{excerpt(work.body, work.data.summary)}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <>
-            <p class="quiet">还没有发布的作品记录。</p>
-            <p class="quiet">
-              一条档案里会有赛事与年份、获奖或当前状态、主控与系统时钟、资源占用、源码地址，以及当时的复盘。
-            </p>
-          </>
-        )
-      }
-    </section>
+  <section class="section">
+    <SectionHead title="作品" href="/works/" count={`${works.length} 条`} />
+    {
+      works.length > 0 ? (
+        <ul class="entries">
+          {works.map((work) => (
+            <li>
+              <span class="when">{work.data.year}</span>
+              <p class="what">
+                <a href={`/works/${work.id}/`}>{work.data.title}</a>
+              </p>
+              {workMeta(work.data) && <p class="aside">{workMeta(work.data)}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="quiet">还没有发布的作品记录。第一份作品档案在整理中。</p>
+      )
+    }
+  </section>
 
-    <section class="section">
-      <SectionHead title="随笔" href="/notes/" count={`${allNotes.length} 篇`} />
-      {
-        notes.length > 0 ? (
-          <ul class="entries">
-            {notes.map((note) => (
-              <li>
-                <span class="when">{stamp(note.data.date)}</span>
-                <p class="what">
-                  <a href={`/notes/${note.id}/`}>{note.data.title}</a>
-                </p>
-                <p class="excerpt">{excerpt(note.body, note.data.summary)}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="quiet">还没有写过东西。</p>
-        )
-      }
-      {
-        allNotes.length > notes.length && (
-          <p class="quiet">
-            共 {allNotes.length} 篇，<a href="/notes/">全部随笔</a>，或按<a href="/archive/">年份</a>、<a
-              href="/tags/"
-            >标签</a>翻。
-          </p>
-        )
-      }
-    </section>
-  </div>
+  <section class="section">
+    <SectionHead title="随笔" href="/notes/" count={`${allNotes.length} 篇`} />
+    {
+      notes.length > 0 ? (
+        <ul class="entries">
+          {notes.map((note) => (
+            <li>
+              <span class="when">{stamp(note.data.date)}</span>
+              <p class="what">
+                <a href={`/notes/${note.id}/`}>{note.data.title}</a>
+              </p>
+              {note.data.summary && <p class="aside">{note.data.summary}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="quiet">还没有写过东西。</p>
+      )
+    }
+    {
+      allNotes.length > notes.length && (
+        <p class="quiet">
+          共 {allNotes.length} 篇，<a href="/notes/">全部随笔</a>，或按<a href="/archive/">年份</a>、<a
+            href="/tags/"
+          >标签</a>翻。
+        </p>
+      )
+    }
+  </section>
 
   <section class="section">
     <SectionHead title="这个站" href="/about/" />

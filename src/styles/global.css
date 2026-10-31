@@ -14,8 +14,6 @@
   --rule: #dfd9cb;
   --accent: #24466e;
   --accent-line: color-mix(in srgb, var(--accent) 38%, transparent);
-  /* 扉页方格纸的格线，只出现在页顶那一条带里 */
-  --grid-line: color-mix(in srgb, var(--ink) 7%, transparent);
 
   /* 字 */
   --font-text: 'Source Serif 4 Variable', 'Noto Serif SC Variable', 'Songti SC', 'SimSun',
@@ -108,43 +106,12 @@ a:active {
 /* ── 骨架 ───────────────────────────────────────────────── */
 
 .page {
-  position: relative;
-  isolation: isolate;
   max-width: var(--page);
   margin: 0 auto;
   padding: 2.25rem 0 4rem;
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-}
-
-/* 全站唯一的纹样：页顶一层极淡的工程方格纸，向下渐隐。
-   左右边界对齐版面列（和页眉线、小节细线同宽），所以边缘看起来是故意的。 */
-.page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 26rem;
-  z-index: -1;
-  background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 22px 22px;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.5) 52%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.5) 52%,
-    transparent 100%
-  );
-  pointer-events: none;
 }
 
 .skip-link {
@@ -252,61 +219,6 @@ footer p {
 
 .section {
   margin-bottom: 2.25rem;
-}
-
-/* 首页索引：作品与随笔并排，各自带正文摘录。
-   并排后每列约 348px，放不下悬垂日期栏，所以条目改成日期在上、正文摘录占满整列。 */
-.index-cols {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: 2.5rem;
-  align-items: start;
-  margin-bottom: 2.25rem;
-}
-
-.index-cols > .section {
-  margin-bottom: 0;
-}
-
-.index-cols .entries {
-  max-width: none;
-}
-
-.index-cols .entries li {
-  grid-template-columns: minmax(0, 1fr);
-  padding: 0 0 1.05rem;
-}
-
-.index-cols .when {
-  display: block;
-  margin-bottom: 0.1rem;
-  font-size: 0.8125rem;
-}
-
-.index-cols .aside {
-  grid-column: 1;
-}
-
-.excerpt {
-  margin: 0.28rem 0 0;
-  font-size: 0.9375rem;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  font-variant-numeric: normal;
-}
-
-@media (max-width: 56rem) {
-  .index-cols {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 2.25rem;
-  }
-  /* 单列时也保持堆叠：390px 宽再切出 88px 日期栏，摘录只剩 242px */
-  .index-cols .entries li {
-    padding: 0 0 1.05rem;
-  }
-  .index-cols .when {
-    font-size: 0.8125rem;
-  }
 }
 
 /* 目录式小节标题：标题 —— 计数，中间那条线用来吃满剩余宽度 */
