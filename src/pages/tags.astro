@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionHead from '../components/SectionHead.astro';
 import { getCollection } from 'astro:content';
 
 const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
@@ -34,7 +33,7 @@ const stamp = (d: Date) =>
   {
     tags.map(([tag, list]) => (
       <section class="section">
-        <SectionHead id={tag} title={tag} count={`${list.length} 篇`} />
+        <h2 id={tag}>{tag}</h2>
         <ul class="entries">
           {list.map((note) => (
             <li>

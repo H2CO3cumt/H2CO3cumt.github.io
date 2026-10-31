@@ -2,7 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import MarginToc from '../../components/MarginToc.astro';
 
 export async function getStaticPaths() {
   const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
@@ -31,54 +30,50 @@ type Brief = { id: string; title: string; date: string } | null;
 type Props = { entry: CollectionEntry<'notes'>; prev: Brief; next: Brief };
 
 const { entry, prev, next } = Astro.props as Props;
-const { Content, headings } = await render(entry);
+const { Content } = await render(entry);
 const { title, date, summary, tags } = entry.data;
 
 const stamp = `${date.getFullYear()} 年 ${date.getMonth() + 1} 月 ${date.getDate()} 日`;
 ---
 
 <Base title={title} description={summary ?? title} section="notes">
-  <article class="with-rail">
-    <MarginToc headings={headings} />
+  <article>
+    <header class="entry-head">
+      <h1>{title}</h1>
+      <p class="byline">{stamp}</p>
+    </header>
 
-    <div class="col">
-      <header class="entry-head">
-        <h1>{title}</h1>
-        <p class="byline">{stamp}</p>
-      </header>
-
-      <div class="prose">
-        <Content />
-      </div>
-
-      {
-        (tags.length > 0 || prev || next) && (
-          <footer class="entry-foot">
-            {tags.length > 0 && (
-              <p class="tags">
-                {tags.map((tag, i) => [
-                  i > 0 && '、',
-                  <a href={`/tags/#${encodeURIComponent(tag)}`}>{tag}</a>,
-                ])}
-              </p>
-            )}
-            {prev && (
-              <p>
-                <a href={`/notes/${prev.id}/`}>
-                  上一篇　{prev.date}　{prev.title}
-                </a>
-              </p>
-            )}
-            {next && (
-              <p>
-                <a href={`/notes/${next.id}/`}>
-                  下一篇　{next.date}　{next.title}
-                </a>
-              </p>
-            )}
-          </footer>
-        )
-      }
+    <div class="prose">
+      <Content />
     </div>
+
+    {
+      (tags.length > 0 || prev || next) && (
+        <footer class="entry-foot">
+          {tags.length > 0 && (
+            <p class="tags">
+              {tags.map((tag, i) => [
+                i > 0 && '、',
+                <a href={`/tags/#${encodeURIComponent(tag)}`}>{tag}</a>,
+              ])}
+            </p>
+          )}
+          {prev && (
+            <p>
+              <a href={`/notes/${prev.id}/`}>
+                上一篇　{prev.date}　{prev.title}
+              </a>
+            </p>
+          )}
+          {next && (
+            <p>
+              <a href={`/notes/${next.id}/`}>
+                下一篇　{next.date}　{next.title}
+              </a>
+            </p>
+          )}
+        </footer>
+      )
+    }
   </article>
 </Base>

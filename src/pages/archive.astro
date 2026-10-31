@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionHead from '../components/SectionHead.astro';
 import { getCollection } from 'astro:content';
 
 const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
@@ -28,7 +27,7 @@ const day = (d: Date) => `${String(d.getMonth() + 1).padStart(2, '0')}.${String(
   {
     years.map((year) => (
       <section class="section">
-        <SectionHead title={String(year)} count={`${byYear.get(year)!.length} 篇`} />
+        <h2>{year}</h2>
         <ul class="entries">
           {byYear.get(year)!.map((note) => (
             <li>

@@ -1,16 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionHead from '../components/SectionHead.astro';
 import { getCollection } from 'astro:content';
 
 const works = (await getCollection('works', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title, 'zh'),
 );
 
-const allNotes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
-const notes = allNotes.slice(0, 6);
+const notes = (await getCollection('notes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 8);
 
 const stamp = (d: Date) =>
   `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
@@ -27,7 +25,7 @@ const workMeta = (d: (typeof works)[number]['data']) =>
   </section>
 
   <section class="section">
-    <SectionHead title="作品" href="/works/" count={`${works.length} 条`} />
+    <h2><a href="/works/">作品</a></h2>
     {
       works.length > 0 ? (
         <ul class="entries">
@@ -48,7 +46,7 @@ const workMeta = (d: (typeof works)[number]['data']) =>
   </section>
 
   <section class="section">
-    <SectionHead title="随笔" href="/notes/" count={`${allNotes.length} 篇`} />
+    <h2><a href="/notes/">随笔</a></h2>
     {
       notes.length > 0 ? (
         <ul class="entries">
@@ -66,22 +64,5 @@ const workMeta = (d: (typeof works)[number]['data']) =>
         <p class="quiet">还没有写过东西。</p>
       )
     }
-    {
-      allNotes.length > notes.length && (
-        <p class="quiet">
-          共 {allNotes.length} 篇，<a href="/notes/">全部随笔</a>，或按<a href="/archive/">年份</a>、<a
-            href="/tags/"
-          >标签</a>翻。
-        </p>
-      )
-    }
-  </section>
-
-  <section class="section">
-    <SectionHead title="这个站" href="/about/" />
-    <p class="quiet">
-      静态生成，不加载统计脚本，正文用自托管的思源宋体。取舍写在<a href="/about/">关于</a>页和仓库的
-      DESIGN.md 里。
-    </p>
   </section>
 </Base>
