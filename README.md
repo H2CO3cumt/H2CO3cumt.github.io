@@ -1,6 +1,12 @@
 # H2CO3cumt
 
+[![site](https://img.shields.io/badge/site-h2co3cumt.github.io-24466e)](https://h2co3cumt.github.io)
+[![Astro](https://img.shields.io/badge/Astro-7-24466e)](https://astro.build)
+[![MIT](https://img.shields.io/badge/license-MIT-24466e)](./LICENSE)
+
 <https://H2CO3cumt.github.io> 的源码。
+
+![首页](./docs/screenshots/home.png)
 
 这个站分成两个区，主页和顶部导航都把这两块分开：
 
