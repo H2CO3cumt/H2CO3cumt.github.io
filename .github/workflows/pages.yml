@@ -44,6 +44,9 @@ jobs:
       - name: Check content and types
         run: pnpm run check
 
+      - name: Check internal links
+        run: pnpm run links
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

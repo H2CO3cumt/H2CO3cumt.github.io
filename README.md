@@ -68,7 +68,17 @@ specs:
 
 ### 图片
 
-放 `public/` 下，Markdown 里用绝对路径引用：`![说明](/images/xxx.png)`。正文里不要用 HTML `<img>`，除非要控制更多属性。
+图片和对应的 Markdown 放同一个目录，用相对路径引用：
+
+```markdown
+![](./block-diagram.png)
+```
+
+构建时会自动转成 webp、写入宽高（避免布局跳动）、按需懒加载。开发板照片、框图、波形截图都这样放。
+
+需要一条固定的 URL、不参与优化的文件（favicon、og 分享图、robots.txt）放 `public/`。
+
+`public/og.png` 是 1200×630 的分享卡，用站点自己的字体渲染导出，改文案后需要重新导一次。正文配图不要走这条路径。
 
 ## 目录
 
