@@ -20,7 +20,7 @@ const works = defineCollection({
     summary: z.string().optional(),
     /** 参数表内容，按顺序渲染 */
     specs: z
-      .array(z.object({ label: z.string(), value: z.string(), href: z.string().url().optional() }))
+      .array(z.object({ label: z.string(), value: z.string(), href: z.url().optional() }))
       .default([]),
     draft: z.boolean().default(false),
   }),
