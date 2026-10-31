@@ -1,10 +1,11 @@
----
+﻿---
 title: RISC-V 多协议逻辑分析仪
 year: 2026
 event: 全国大学生 FPGA 创新设计大赛
 result: 参赛作品
 summary: 一片紫光同创 PGL50H 上同时跑自研 RV32I 五级流水处理器和八通道逻辑分析仪——被测对象和观测工具是同一颗芯片。
-license: 待定
+repo: https://github.com/H2CO3cumt/RISC_V_CPU_2026
+license: MIT（代码）/ CERN-OHL-P-2.0（硬件文档）
 specs:
   - label: 器件
     value: 紫光同创 PGL50H-6IFBG484
@@ -76,4 +77,4 @@ SoC 侧集成数据 RAM、UART、GPIO 和 MMIO 互连，UART 经板载 CP2102 �
 
 ## 开源
 
-RTL、约束、验证脚本和上位机工具正在整理。仓库放出后，地址会补在参数表里。
+源码在 [H2CO3cumt/RISC_V_CPU_2026](https://github.com/H2CO3cumt/RISC_V_CPU_2026)：36 个 RTL 模块、93 个 testbench、构建与回归脚本、上位机采集工具都在里面。

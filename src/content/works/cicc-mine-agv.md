@@ -1,10 +1,11 @@
----
+﻿---
 title: 基于 Robei EDA 的多传感融合智能矿用 AGV
 year: 2026
 event: 第十届全国大学生集成电路创新创业大赛 · “Robei” 企业命题
 result: 全国总决赛三等奖，华东赛区一等奖
 summary: 六类传感器并行采集、安全仲裁和双轮闭环调速全部在 FPGA 里完成，没有 MCU，也没有软核。
-license: 待定
+repo: https://github.com/H2CO3cumt/CICC-mine-agv
+license: MIT（代码）/ CERN-OHL-P-2.0（硬件文档）
 specs:
   - label: 杯赛
     value: “Robei” 企业命题 —— 基于 Robei EDA 的控制电路设计与实现
@@ -71,4 +72,4 @@ specs:
 
 ## 开源
 
-RTL、约束和上位机源码正在整理，仓库地址放出后补在参数表里。
+源码在 [H2CO3cumt/CICC-mine-agv](https://github.com/H2CO3cumt/CICC-mine-agv)：Robei 工程导出的 19 个 Verilog 模块、模型与测试文件、引脚约束、两个版本的 Python 上位机，以及设计报告。
