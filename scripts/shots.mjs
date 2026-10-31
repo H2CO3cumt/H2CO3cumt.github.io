@@ -23,6 +23,7 @@ const PAGES = [
   { name: 'archive', path: '/archive/' },
   { name: 'works', path: '/works/' },
   { name: 'about', path: '/about/' },
+  { name: '404', path: '/404.html' },
   ...EXTRA.map((path) => ({
     name: path.replace(/^\/|\/$/g, '').replace(/\//g, '-') || 'root',
     path,
